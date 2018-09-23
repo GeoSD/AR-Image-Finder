@@ -62,6 +62,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 */
     
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
+        switch anchor {
+        case let imageAnchor as ARImageAnchor:
+            nodeAdded(node, for: imageAnchor)
+        case let planeAnchor as ARPlaneAnchor:
+            nodeAdded(node, for: planeAnchor)
+        default:
+            print("There is anchor but not PLANE or IMAGE")
+        }
+    }
+    
+    func nodeAdded(_ node: SCNNode, for imagaAnchor: ARImageAnchor) {
+        let referenceImage = imagaAnchor.referenceImage
+        let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
+        
+        plane.firstMaterial?.diffuse.contents = UIColor.blue
+        
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.opacity = 0.25
+        
+        node.addChildNode(planeNode)
+        
+    }
+    
+    func nodeAdded(_ node: SCNNode, for planeAnchor: ARPlaneAnchor) {
+        
+    }
+    
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
