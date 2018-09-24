@@ -93,7 +93,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         coinNode.name = "coin"
         coinNode.geometry = coin
         coinNode.eulerAngles.x = -Float.pi / 2
-        coinNode.position = SCNVector3(0, 0.1, 0)
+        coinNode.position = SCNVector3(0, 0.3, 0)
         
         node.addChildNode(coinNode)
         
