@@ -90,16 +90,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let coinNode = SCNNode()
         coin.firstMaterial?.diffuse.contents = UIColor.yellow
         
+        coinNode.name = "coin"
         coinNode.geometry = coin
         coinNode.eulerAngles.x = -Float.pi / 2
         coinNode.position = SCNVector3(0, 0.5, 0)
-        
-        let animation = SCNAnimation()
-        animation.duration = 10.0
-        animation.autoreverses = true
-        animation.repeatCount = .infinity
-        
-        coinNode.addAnimation(animation, forKey: nil)
         
         node.addChildNode(coinNode)
         
