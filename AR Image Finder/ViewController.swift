@@ -81,14 +81,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         plane.firstMaterial?.diffuse.contents = UIColor.blue
         
         let planeNode = SCNNode(geometry: plane)
+        planeNode.eulerAngles.x = -Float.pi / 2
         planeNode.opacity = 0.25
         
         node.addChildNode(planeNode)
         
+        let coin = SCNCylinder(radius: 0.25, height: 0.05)
+        let coinNode = SCNNode()
+        coin.firstMaterial?.diffuse.contents = UIColor.yellow
+        
+        coinNode.geometry = coin
+        coinNode.eulerAngles.x = -Float.pi / 2
+        coinNode.position = SCNVector3(0, 0.5, 0)
+        
+        let animation = SCNAnimation()
+        animation.duration = 10.0
+        animation.autoreverses = true
+        animation.repeatCount = .infinity
+        
+        coinNode.addAnimation(animation, forKey: nil)
+        
+        node.addChildNode(coinNode)
+        
     }
     
     func nodeAdded(_ node: SCNNode, for planeAnchor: ARPlaneAnchor) {
-        
+
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
