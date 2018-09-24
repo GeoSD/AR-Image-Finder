@@ -86,7 +86,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         node.addChildNode(planeNode)
         
-        let coin = SCNCylinder(radius: 0.25, height: 0.05)
+        let coin = SCNCylinder(radius: 0.125, height: 0.01)
         let coinNode = SCNNode()
         coin.firstMaterial?.diffuse.contents = UIColor.yellow
         
